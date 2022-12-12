@@ -4,7 +4,7 @@
 
 ## 介绍
 
-你好，我是[燕云长风](https://yanyunchangfeng.github.io)。大漠穷秋于 2019-03-16 21:22 赠此笔名。  
+你好，我是[燕云长风](https://yanyunchangfeng.github.io)。
 寓意：结合李白著名的边塞诗《关山月》取【燕云长风】—— 长风几万里，吹度玉门关。
 
 ## 用法
@@ -15,7 +15,7 @@
 ## node
 
 * [node eventLoop](src/node-event-loop/index.ts) 
-* [node 核心模块](src/module/index.ts)  |  [代码调式](src/module/usea.ts) 
+* [node 核心模块](src/module/index.ts)  |  [代码调式/调式模块](src/module/usea.ts) 
 
 ## 系列项目
 
