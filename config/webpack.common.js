@@ -107,6 +107,13 @@ module.exports = {
       // 别名  注意tsconfig.json˙中的paths也要对应配置
       src: path.resolve("src"),
     },
+    fallback: {
+      path: "path-browserify",
+      vm: require.resolve("vm-browserify"),
+      // process: require.resolve("process/browser"),//无效  见下方webpack.ProvidePlugin的方式引入
+      // path: false,
+      // vm: false,
+    },
   },
   resolveLoader: {
     // 用于配置解析loader时的resolve 配置,默认的配置
@@ -298,6 +305,11 @@ module.exports = {
           chunkFilename: "[name].[contenthash].css",
         })
       : noop,
+    new webpack.ProvidePlugin({
+      process: "process/browser", // node process polyfill
+      path: "path-browserify",
+      vm: "vm-browserify",
+    }),
     !isDev ? new webpack.BannerPlugin("Copyright By yanyunchangfeng") : noop,
   ],
   infrastructureLogging: {

@@ -10,3 +10,5 @@ declare module "*.svg";
 declare module "*.wasm";
 declare module "data:text/javascript,export default 'title'";
 declare const AUTHOR: string;
+declare const path: any;
+declare const vm: any;

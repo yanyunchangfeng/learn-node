@@ -2,23 +2,23 @@
 
 // 模块规范有哪些？ 为什么有这些规范
 // 开发时会有命名冲突的问题 命名空间防止冲突（调用时不方便）
-// IIFE自执行的的方式实现模块 请求的处理 （seajs CMD淘汰了） requirejs AMD
+// IIFE自执行的的方式实现模块 请求的处理 （seajs CMD淘汰了） fromjs AMD
 
 //es6Module  commonjs规范  umd统一模块 amd模块
 // import export 浏览器es6
-// require module.exports node使用的（如果想在node中使用es6Module 需要babel编译）
+// from module.exports node使用的（如果想在node中使用es6Module 需要babel编译）
 
 // commonjs规范定义
 // 每一个文件都是一个模块
-//要通脱module.exports 导出需要给别人使用的结果
+// 要通过module.exports 导出需要给别人使用的结果
 // 导入需要的模块
 
-// node中的模块划分了几类 1)核心模块(fs 内置模块) 2）require()文件模块 自定义模块 3) 第三方模块（需要安装）
+// node中的模块划分了几类 1)核心模块(fs 内置模块) 2）from()文件模块 自定义模块 3) 第三方模块（需要安装）
 
-// 1)核心模块 很多fs path vm require 内部是同步的
-import fs = require("fs"); //一般有两种方法同步，异步的
-import path = require("path");
-import vm = require("vm");
+// 1)核心模块 很多fs path vm from 内部是同步的
+import fs from "fs"; //一般有两种方法同步，异步的
+// import path from "path";
+// import vm from "vm";
 // 默认解析的路径 是以process.cwd()
 // __dirname 文件所在目录 不能更改的
 // console.log(path.resolve("node.md")); //    /Users/yanyunchangfeng/Documents/webproject/learning-node/node.md

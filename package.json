@@ -19,7 +19,8 @@
   "sideEffects": [
     "*.css",
     "*.less",
-    "*.scss"
+    "*.scss",
+    "*.ts"
   ],
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "mini-css-extract-plugin": "2.6.0",
     "sass": "1.49.11",
     "sass-loader": "12.6.0",
+    "setimmediate": "^1.0.5",
     "speed-measure-webpack-plugin": "1.5.0",
     "style-loader": "3.3.1",
     "terser-webpack-plugin": "5.3.1",
@@ -57,5 +59,9 @@
     "webpack-merge": "5.8.0",
     "webpackbar": "5.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "path-browserify": "1.0.1",
+    "process": "0.11.10",
+    "vm-browserify": "1.1.2"
+  }
 }

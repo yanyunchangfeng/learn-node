@@ -7,7 +7,8 @@
 // -> timers setInterval 定时器
 // -> poll 阶段 轮询 会在特定的时候进行阻塞 执行i/o 回调
 // -> check setImmediate (每个宏任务执行完毕后都会清空微任务)
-
+import fs from "fs";
+import path = require("path");
 // 根据性能影响 执行的顺序会有所不同
 setImmediate(() => {
   console.log("immediate");
@@ -16,17 +17,16 @@ setTimeout(() => {
   console.log("timeout");
 }, 0);
 
-// const fs = require('fs')
-// const path = require('path')
-// fs.readFile(path.join(__dirname, 'index.ts'), () => { // i/o 轮训时会执行i/o回调 如果没有定义setImmediate 会等待剩下的i/o 完成 或者定时器到达时间
-//     setTimeout(() => {
-//         console.log('timeout')
-//     })
-//     setImmediate(() => {
-//         console.log('immediate')
-//     })
-//     // 先输出immediate 再输出timeout
-// })
+// fs.readFile(path.join(__dirname, "index.ts"), () => {
+//   // i/o 轮训时会执行i/o回调 如果没有定义setImmediate 会等待剩下的i/o 完成 或者定时器到达时间
+//   setTimeout(() => {
+//     console.log("timeout");
+//   });
+//   setImmediate(() => {
+//     console.log("immediate");
+//   });
+//   // 先输出immediate 再输出timeout
+// });
 
 Promise.resolve().then(() => {
   console.log("promise");
