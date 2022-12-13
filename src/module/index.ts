@@ -4,7 +4,7 @@
 // 开发时会有命名冲突的问题 命名空间防止冲突（调用时不方便）
 // IIFE自执行的的方式实现模块 请求的处理 （seajs CMD淘汰了） fromjs AMD
 
-//es6Module  commonjs规范  umd统一模块 amd模块
+// es6Module  commonjs规范  umd统一模块 amd模块
 // import export 浏览器es6
 // from module.exports node使用的（如果想在node中使用es6Module 需要babel编译）
 
@@ -25,7 +25,7 @@ import fs from "fs"; //一般有两种方法同步，异步的
 console.log(path.resolve(__dirname, "../node.md")); // 你给我一个相对路径 我还你个绝对路径, /Users/yanyunchangfeng/Documents/webproject/learning-node/src/node.md
 console.log(path.resolve(__dirname, "../node.md", "/")); //   /
 
-//有拼接的功能
+// 有拼接的功能
 console.log(path.join(__dirname, "../node.md", "/")); // 只是简单的拼接 /Users/yanyunchangfeng/Documents/webproject/learning-node/src/node.md/
 
 // 如果遇到带/的路径 resolve 会认为是根路径 join则是拼接在一起
@@ -40,9 +40,9 @@ const log = `console.log(a)`;
 let fn = new Function(log); // new Function 也是可以产生一个执行环境 不依赖于外层作用域，必须包一层函数  模版引擎中会使用new Function
 // console.log(fn()); //a is not defined
 console.log(fn.toString());
-//function anonymous() {
-// console.log(a)
-//}
+// function anonymous() {
+//   console.log(a)
+// }
 
 vm.runInThisContext(log); // 让字符串直接执行 并且在沙箱环境中 模版引擎用的是 new Function + with
 
