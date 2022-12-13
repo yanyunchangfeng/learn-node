@@ -1,13 +1,15 @@
 // node 中的全局对象 浏览器中的this指代的是window 服务端中的this指代的都是global
 // 默认我们访问是在文件中访问的this 内部被更改了 所以不是global module.exports
 
+import { program } from "commander";
+
 // 全局属性
 // clearInterval clearTimeout setInterval setTimeout queueMicrotask setImmediate
 // process Buffer
 
 // require module exports __dirname __filename
 // 全局变量是可以直接在文件中不声明直接访问的变量，但是global上的属性叫全局变量 global.xxx
-const program = require("commander");
+
 console.log(this); //{}
 
 function b() {
@@ -68,4 +70,4 @@ program.usage("[options]");
 // });
 program.option("-p, --port <v>", "set server port");
 program.parse(process.argv);
-console.log(program);
+console.log(program.getOptionValue("port"));
