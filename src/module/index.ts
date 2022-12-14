@@ -44,6 +44,6 @@ console.log(fn.toString());
 //   console.log(a)
 // }
 
-vm.runInThisContext(log); // 让字符串直接执行 并且在沙箱环境中 模版引擎用的是 new Function + with
+// vm.runInThisContext(log); // 让字符串直接执行 并且在沙箱环境中 模版引擎用的是 new Function + with
 
 // 为了实现commonjs规范
