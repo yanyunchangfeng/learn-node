@@ -1,0 +1,9 @@
+- npm之所以能够直接使用是因为npm 放到了path目录，其他安装的全局包都在npm下。所以可以直接当成全局命令来执行
+- 全局包必须增加bin字段，会通过配置做软链接 表示用node执行 #! /usr/bin/env node
+- 安装模块（第三方模块）依赖方式 1.开发依赖（webpack） 2. 项目依赖（react） 3.同（版本）/（等）依赖 PeerDependencies（bootstrap 依赖于jquery 未安装会提示安装） 4 捆绑依赖(bundleDependencies npm pack 会把bundleDependencies中的依赖打包进去) 5.可选依赖（optionalDependencies 爱加不加会有提示）
+- 开发:npm install webpack -D 
+- 项目:npm install react （-S）  新版本可以省略 npm install 默认会安装所有包 npm install --production 只安装生产环境下
+- 常见的版本号 正式版 （major(大版本，react16-17),minor（中版本，新增api）,patch（小版本，修复bug的）） 正式版 ^2.0.0 ^表示锁定大版本 必须以2开头不能低于当前版本 ~2.2.2 锁定前两位   >=  <=  1.0.0-2.0.0
+- npm version major/minor/patch 升级大版本 中版本 小版本 (手动更新)
+- alpha(内部测试版) beta（公开测试版） rc(最终测试版)
+- npm version major + git 可以实现版本管理
