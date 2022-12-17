@@ -1,4 +1,5 @@
 - npm之所以能够直接使用是因为npm 放到了path目录，其他安装的全局包都在npm下。所以可以直接当成全局命令来执行
+- npm link 把当前模块临时放到npm下 方便调试使用
 - 全局包必须增加bin字段，会通过配置做软链接 表示用node执行 #! /usr/bin/env node
 - 安装模块（第三方模块）依赖方式 1.开发依赖（webpack） 2. 项目依赖（react） 3.同（版本）/（等）依赖 PeerDependencies（bootstrap 依赖于jquery 未安装会提示安装） 4 捆绑依赖(bundleDependencies npm pack 会把bundleDependencies中的依赖打包进去) 5.可选依赖（optionalDependencies 爱加不加会有提示）
 - 开发:npm install webpack -D 
@@ -7,3 +8,8 @@
 - npm version major/minor/patch 升级大版本 中版本 小版本 (手动更新)
 - alpha(内部测试版) beta（公开测试版） rc(最终测试版)
 - npm version major + git 可以实现版本管理
+- scripts + npx包发布(会默认将当前node_modules下的.bin目录放到全局 npm run env 查看path) 只有在运行scripts或者npx 当前目录可以使用，运行后就会删除掉 npx 比scripts的好处是如果模块不存在会安装 安装后会被销毁，表示安装时采用最新的包来安装
+- npm run mime -- a.mp4 可以加-- 后面是传递的参数
+- 发包 先登录npm官网 npm publish 代码更新要更改版本重新提交  (可以通过npm version major/minor/patch )
+- npm unpublish  xxx --force 卸载包
+- events模块
