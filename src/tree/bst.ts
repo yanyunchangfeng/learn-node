@@ -85,6 +85,24 @@ class BST {
       }
     }
   }
+  //左右互换 树的遍历
+  invertTree() {
+    if (this.root == null) return;
+    let stack = [this.root]; //10
+    let index = 0;
+    let currentNode = null;
+    while ((currentNode = stack[index++])) {
+      let temp = currentNode.left;
+      currentNode.left = currentNode.right;
+      currentNode.right = temp;
+      if (currentNode.left) {
+        stack.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        stack.push(currentNode.right);
+      }
+    }
+  }
 }
 let bst = new BST();
 let arr = [10, 8, 19, 6, 15, 22, 20];
@@ -94,8 +112,9 @@ arr.forEach((item) => {
 
 console.dir(bst, { depth: 10 });
 // 二叉搜索树中的内容必须是有可比较性的
-
-//树的遍历
+// 常见的遍历方式，前序遍历 中序 后序 层序
+// 二叉树的反转，文件夹的操作
+// 树的遍历
 // 前序遍历 PreOrder Traversal （先访问根节点、前序遍历左子树、前序遍历右子树）
 // 中序遍历 InOrder Traversal（中序遍历左子树、根节点、中序遍历右子树）
 // 后序遍历 PostOrder Traversal（后序遍历左子树、后序遍历右子树、根节点）
@@ -149,9 +168,10 @@ bst.preOrderTraversal({
   },
 });
 bst.levelOrderTraversal({
-  // babel 内部转化都是使用这种方式
   visit(node: any) {
     console.log(node.element, "----");
   },
 });
+bst.invertTree();
+console.log(bst.root);
 export {};

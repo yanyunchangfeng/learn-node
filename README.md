@@ -17,7 +17,7 @@
 * [node eventLoop](src/node-event-loop/index.ts) 
 * [node 中的概念](src/node/index.ts) | [node global commander](src/node/global.ts) 
 * [node 核心模块](src/module/index.ts)  |  [代码调式/调式模块](src/module/usea.ts) 
-* [树的常用概念](src/tree/index.ts)  |  [二叉搜索树的实现/树的遍历](src/tree/bst.ts) 
+* [树的常用概念](src/tree/index.ts)  |  [二叉搜索树的实现/树的遍历/反转二叉树](src/tree/bst.ts) 
 * [npm使用/npm脚本相关](src/npm/node.md) 
 ## 系列项目
 
