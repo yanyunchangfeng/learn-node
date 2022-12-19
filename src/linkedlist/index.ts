@@ -79,10 +79,38 @@ class LinkedList {
     // 链表的总个数
     return this.size;
   }
+  reverseLinkedList2() {
+    function reverse(head: any) {
+      // 先递归最里面的，再出来
+      // 如果链表为空 或者没有下一个了 就不用反转了
+      if (head == null || head.next == null) return head;
+      let newHead: any = reverse(head.next); //将原来的下一个变成头结点
+      head.next.next = head; // 让下一个节点的下一个指向原来的头
+      head.next = null; //让老头指向null
+      return newHead;
+    }
+    this.head = reverse(this.head);
+    return this.head;
+  }
+  reverseLinkedList() {
+    let head = this.head; // 保留老头
+    if (head == null || head.next == null) return head;
+    let newHead = null; // 新的链表头部默认指向null
+    while (head != null) {
+      let temp = head.next; // 存储的是100
+      head.next = newHead; // 让老的头指向新的头
+      newHead = head; // 新的头指向老的头
+      head = temp; // 老的头向后移动
+    }
+    this.head = newHead;
+    return this.head;
+  }
 }
 let ll = new LinkedList();
 ll.add(0, 100); // 200 100 300 往索引0处添加
 ll.add(0, 200);
 ll.add(300); // 200 下一个 是100 下一个 是300 向末尾添加
 console.log(ll.head);
+let reverseList = ll.reverseLinkedList();
+console.log("reverseList", reverseList);
 export { LinkedList };
