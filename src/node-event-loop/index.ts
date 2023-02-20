@@ -11,19 +11,21 @@
 import fs = require("fs");
 import path = require("path");
 // 根据性能影响 执行的顺序会有所不同
+// [时间到达后 定时器会放入timers中] 但是代码会有歧义 定时器的0不是真正的0 大概会有几毫秒。一种是主栈执行完毕后时间还没到达，就不会放到timers队列里，先接着往下执行 先走check
+// 还有一种可能是代码执行完毕后timer到时间了，先执行回调队列 在执行check
 setImmediate(() => {
   console.log("immediate");
 });
 setTimeout(() => {
   console.log("timeout");
-}, 0);
+}, 0); // 不是真正的0 大概会有几毫秒
 
 // fs.readFile(path.join(__dirname, "index.ts"), () => {
-//   // i/o 轮训时会执行i/o回调 如果没有定义setImmediate 会等待剩下的i/o 完成 或者定时器到达时间
+//   // i/o 轮询时会执行i/o回调 如果没有定义setImmediate 会等待剩下的i/o完成 或者定时器到达时间
 //   setTimeout(() => {
 //     console.log("timeout");
 //   });
-//   setImmediate(() => {
+//   setImmediate(() => { // 不是特别重要的任务 可以放到setImmediate
 //     console.log("immediate");
 //   });
 //   // 先输出immediate 再输出timeout
