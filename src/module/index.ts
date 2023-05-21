@@ -23,7 +23,7 @@ import fs from "fs"; //一般有两种方法同步，异步的
 // __dirname 文件所在目录 不能更改的
 // console.log(path.resolve("node.md")); //    /Users/yanyunchangfeng/Documents/webproject/learning-node/node.md
 console.log(path.resolve(__dirname, "../node.md")); // 你给我一个相对路径 我还你个绝对路径, /Users/yanyunchangfeng/Documents/webproject/learning-node/src/node.md
-console.log(path.resolve(__dirname, "../node.md", "/")); //   /
+console.log(path.resolve(__dirname, "../node.md", "/")); //   / resolve不能遇到/ 否则会返回根目录下
 
 // 有拼接的功能
 console.log(path.join(__dirname, "../node.md", "/")); // 只是简单的拼接 /Users/yanyunchangfeng/Documents/webproject/learning-node/src/node.md/
@@ -34,10 +34,13 @@ console.log(path.extname("a.min.js")); // .js 取后缀名
 console.log(path.relative("a", "a/a.js")); // 去掉相同的部分 => a.js
 console.log(path.dirname(__dirname)); // __dirname = path.dirname
 
+// 虚拟机模块（沙箱）干净的环境 测试用例
+// 内部一般情况下操作的都是字符串逻辑，如何让一个字符串来运行 `console.log(1)`
+
 let a = 1;
-const log1 = eval(`console.log(a)`); // eval执行时会查找上下文  输出1
+const log1 = eval(`console.log(a)`); // eval执行时会查找上下文输出1 eval默认会取当前作用域下的变量，不干净的环境
 const log = `console.log(a)`;
-let fn = new Function(log); // new Function 也是可以产生一个执行环境 不依赖于外层作用域，必须包一层函数  模版引擎中会使用new Function
+let fn = new Function(log); // new Function 也是可以产生一个执行环境 不依赖于外层作用域，必须包一层函数  模版引擎中会使用new Function   可以使用new Function来创建一个沙箱环境，让字符串执行
 // console.log(fn()); //a is not defined
 console.log(fn.toString());
 // function anonymous() {
