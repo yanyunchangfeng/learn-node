@@ -3,44 +3,49 @@
 class Node {
   left = null;
   right = null;
-  constructor(public element: any, public parent: any) {
+  constructor(public element: any, public parent: any = null) {
     this.element = element; // 记录当前节点的父亲是谁
     this.parent = parent;
   }
 }
 
 class BST {
+  // 二叉搜索树 我们没有考虑相同值的情况
   root: any = null;
   size = 0;
   constructor() {}
   add(element: any) {
     if (this.root == null) {
-      this.root = new Node(element, null);
-      this.size++;
-      return;
+      return (this.root = new Node(element));
     }
+    // 可以用递归 用循环就可以了
     // 根据根的值来比较插入
     // 根据条件不停的找 找到节点为空时，将上一次的值保存起来。将节点插入到保存的节点中
     let currentNode = this.root; // 从根开始进行查找
     let parent = null;
     let compare: any = null;
     while (currentNode) {
-      compare = element - currentNode.element;
-      parent = currentNode; //parent就是在进入左右子树进入之前保存下来的节点
-      if (compare > 0) {
+      compare = currentNode.element < element;
+      parent = currentNode; // 遍历前先记录节点
+      if (compare) {
+        // 作比较 更新节点
+        // 接着以右边的为根节点
         currentNode = currentNode.right;
-      } else if (compare < 0) {
+      } else {
         currentNode = currentNode.left;
       }
     }
+    // compare // 放左还是放右边
+    // parent; // 放到谁的身上
     let newNode = new Node(element, parent);
-    if (compare > 0) {
+    if (compare) {
       parent.right = newNode;
     } else {
       parent.left = newNode;
     }
     this.size++;
   }
+  // 先序遍历
   preOrderTraversal(visitor: any) {
     const traversal = (node: any) => {
       if (node == null) return;
@@ -50,6 +55,7 @@ class BST {
     };
     traversal(this.root);
   }
+  // 中序遍历
   inOrderTraversal(visitor: any) {
     const traversal = (node: any) => {
       if (node == null) return;
@@ -60,6 +66,7 @@ class BST {
     };
     traversal(this.root);
   }
+  // 后序遍历
   // 根据parent属性 一般情况下 都可以用栈形结构 去避免递归
   postOrderTraversal(visitor: any) {
     const traversal = (node: any) => {
@@ -70,6 +77,7 @@ class BST {
     };
     traversal(this.root);
   }
+  //层序遍历是广度遍历
   levelOrderTraversal(visitor: any) {
     if (this.root == null) return;
     let stack = [this.root]; //10
@@ -160,17 +168,19 @@ console.log(resultLeft);
 console.log(resultIn);
 console.log(resultRight);
 
+// webpack -> ast babel树的遍历，需要在遍历的过程中将当前节点给你传递出来，你来使用
+
 // 访问者模式
 bst.preOrderTraversal({
   // babel 内部转化都是使用这种方式
   visit(node: any) {
     // console.log(node.element, "----");
-  },
+  }
 });
 bst.levelOrderTraversal({
   visit(node: any) {
-    console.log(node.element, "----");
-  },
+    console.log(node.element, '----');
+  }
 });
 bst.invertTree();
 console.log(bst.root);
